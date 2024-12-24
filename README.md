@@ -1,3 +1,3 @@
-# CompMTL: LAYER-WISE COMPETITIVE MULTI-TASK LEARNING (ICASSP 2025)
+# CompMTL: Layer-Wise Competitive Multi-Task Learning (ICASSP 2025)
 
 
