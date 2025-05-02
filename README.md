@@ -1,6 +1,48 @@
-# CompMTL: Layer-Wise Competitive Multi-Task Learning (ICASSP 2025)
+# CompMTL: Layer-Wise Competitive Multi-Task Learning
 
-A layer-wise MTL gradients balancing approach
+## Overview
 
+**CompMTL (Layer-Wise Competitive Multi-Task Learning)** is a novel approach designed to address multi-task conflicts in shared networks by fine-tuning gradients at the layer level. By adjusting gradient updates based on the relative importance of tasks at each layer of the model, **CompMTL** aims to improve convergence and performance across multiple tasks. This method outperforms conventional multi-task learning approaches by mitigating conflicts and facilitating task-specific progress.
 
-It is challenging to simultaneously address multiple related tasks using a unified multi-task model and consistently balance conflicts across these tasks. The conflicts arise because each task competes to update the shared module in a manner that can better align with its own requirements. To address the conflicts, existing multi-task learning methods primarily balance task losses or gradients of the shared module, but frequently overlook the differences in layer-wise conflicts, which can enable a more fine-grained conflict-averse. For details, each task establishes its competitive influence over a particular layer by assigning varying degrees of importance to it. Attenuating the gradients of tasks with relatively lower importance during updates in specific layers may not only balance gradient conflicts but also facilitate the progression of other tasks. Based on this, we proposed \textbf{Layer-wise Competitive Multi-task Learning}, wherein multiple tasks compete for gradient update weights within the shared modules of a multi-task model. This approach aims to achieve layer-specific gradient balance by considering each task's relative importance at different layers within the shared module. Tasks of relatively lower importance for a specific layer will receive smaller gradient updates, thereby facilitating faster convergence for more important tasks.
+### Key Features:
+- **Layer-wise Gradient Balancing:** Mitigates conflicts by adjusting task gradients at specific layers.
+- **Improved Task Convergence:** Ensures that each task receives appropriate gradient updates based on layer-wise importance, leading to more efficient training.
+- **Curriculum Learning Support:** Reduces training time by gradually enlarging the competitive space during training.
+- **Integration with Existing Methods:** **CompMTL** can be combined with existing multi-task optimization strategies for enhanced performance.
+
+## Paper
+
+For a comprehensive explanation of the **CompMTL** method, including experimental results on multiple datasets, refer to the paper:  
+[**CompMTL: Layer-Wise Competitive Multi-Task Learning**](ICASSP25-Camera-Ready.pdf)  
+*Published in ICASSP 2025.*
+
+## Installation
+
+### Prerequisites:
+- **Python 3.6+**
+- **PyTorch** (CUDA support is recommended for training with GPUs)
+- Other dependencies are listed in the `requirements.txt` file.
+
+### Setup Instructions:
+
+1. Clone the repository:
+
+    ```bash
+    git clone https://github.com/yourusername/CompMTL.git
+    cd CompMTL
+    ```
+
+2. Install the necessary dependencies:
+
+    ```bash
+    pip install -r requirements.txt
+    ```
+
+3. Download the required datasets (e.g., **Cityscapes**, **NYU-V2**) as per the instructions provided in the paper.
+
+## Training
+
+The **CompMTL** implementation uses a **SegFormer** model with a **MiT-B0** backbone. To train the model on the **Cityscapes** dataset with multi-task learning, use the following command:
+
+```bash
+python3 train_baseline_MTL_progress_KD.py --model segformer_multi --backbone MiT_B0 --task multi --flag com_mtl --dataset city_256 --data '/path/to/dataset/cityscapes256_512/' --batch-size 8 --val-batch 4 --max-iterations 100000 --lr 0.0001 --weight-decay 0.000001 --kd-weight 1 1 1 --sigma 10.0 --temp 1.0 --device cuda:2 --pretrained '../mit_b0.pth'
