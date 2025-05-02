@@ -29,7 +29,7 @@ For a comprehensive explanation of the **CompMTL** method, including experimenta
 
     ```bash
     git clone https://github.com/yourusername/CompMTL.git
-    cd CompMTL
+    cd CompMTL/code
     ```
 
 2. Download the required datasets (e.g., **Cityscapes**, **NYU-V2**) as per the instructions provided in the paper.
