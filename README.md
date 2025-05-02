@@ -40,3 +40,37 @@ The **CompMTL** implementation uses a **SegFormer** model with a **MiT-B0** back
 
 ```bash
 python3 train_baseline_MTL_progress_KD.py --model segformer_multi --backbone MiT_B0 --task multi --flag com_mtl --dataset city_256 --data '/path/to/dataset/cityscapes256_512/' --batch-size 8 --val-batch 4 --max-iterations 100000 --lr 0.0001 --weight-decay 0.000001 --kd-weight 1 1 1 --sigma 10.0 --temp 1.0 --device cuda:2 --pretrained '../mit_b0.pth'
+```
+
+## Command-Line Arguments:
+| Argument           | Description                                                  |
+| ------------------ | ------------------------------------------------------------ |
+| `--model`          | **SegFormer** architecture for multi-task learning (or ResNet).          |
+| `--backbone`       | **MiT-B0** backbone model.                                   |
+| `--task`           | Specifies the multi-task setup.                              |
+| `--flag`           | Activates **CompMTL** optimization strategy (or other works: GradNorm, PCGrad, AMTL, CAGrad, and so on).                 |
+| `--dataset`        | Choose the dataset (e.g., **city\_256** for **Cityscapes**). |
+| `--data`           | Path to the dataset.                                         |
+| `--batch-size`     | Training batch size (default: 8).                            |
+| `--val-batch`      | Validation batch size (default: 4).                          |
+| `--max-iterations` | Maximum number of iterations (default: 100,000).             |
+| `--lr`             | Learning rate (default: 0.0001).                             |
+| `--weight-decay`   | Weight decay for regularization.                             |
+| `--kd-weight`      | Knowledge distillation weights for multi-task distillation.  |
+| `--sigma`          | Regularization coefficient (default: 10.0).                  |
+| `--temp`           | Knowledge distillation temperature (default: 1.0).           |
+| `--device`         | Specify the CUDA device (e.g., **cuda:2**).                  |
+| `--pretrained`     | Path to pre-trained weights for the **MiT-B0** model.        |
+
+## Citation
+If you use CompMTL in your research, please cite the following paper:
+```
+@inproceedings{cheng2025compmtl,
+  title={CompMTL: Layer-Wise Competitive Multi-Task Learning},
+  author={Cheng, Tiancong and Zhang, Ying and Shah, Rajiv Ratn and Zimmermann, Roger and Yu, Zhiwen and Guo, Bin},
+  booktitle={ICASSP 2025-2025 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP)},
+  pages={1--5},
+  year={2025},
+  organization={IEEE}
+}
+```
