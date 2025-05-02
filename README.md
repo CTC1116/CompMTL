@@ -13,7 +13,7 @@
 ## Paper
 
 For a comprehensive explanation of the **CompMTL** method, including experimental results on multiple datasets, refer to the paper:  
-[**CompMTL: Layer-Wise Competitive Multi-Task Learning**](ICASSP25-Camera-Ready.pdf)  
+[**CompMTL: Layer-Wise Competitive Multi-Task Learning**](https://ieeexplore.ieee.org/abstract/document/10888316)
 *Published in ICASSP 2025.*
 
 ## Installation
@@ -32,13 +32,7 @@ For a comprehensive explanation of the **CompMTL** method, including experimenta
     cd CompMTL
     ```
 
-2. Install the necessary dependencies:
-
-    ```bash
-    pip install -r requirements.txt
-    ```
-
-3. Download the required datasets (e.g., **Cityscapes**, **NYU-V2**) as per the instructions provided in the paper.
+2. Download the required datasets (e.g., **Cityscapes**, **NYU-V2**) as per the instructions provided in the paper.
 
 ## Training
 
